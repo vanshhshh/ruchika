@@ -1,36 +1,185 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NourishedWithRuchikaChawla
 
-## Getting Started
+Production-ready dietician platform with premium digital product delivery, Google auth, and secure Razorpay checkout.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 16 App Router + TypeScript
+- Tailwind CSS 4
+- MongoDB (Compass-compatible) for users and purchases
+- NextAuth (Google OAuth)
+- Razorpay for payments
+- Framer Motion for selective motion and section transitions
+
+## Core Features
+
+- High-converting wellness website (home, about, blog, reviews, digital products)
+- Google login via NextAuth
+- Paid digital product flow with Razorpay
+- Purchase persistence in MongoDB
+- Protected My Products dashboard
+- Protected file delivery from server-only folder
+- SEO-ready metadata across key routes
+
+## Folder Structure
+
+```text
+src/
+	app/
+		about/
+		blog/
+			[slug]/
+		reviews/
+		products/
+			[slug]/
+		my-products/
+		api/
+			auth/[...nextauth]/
+			payments/create-order/
+			payments/verify/
+			products/[productId]/access/
+	components/
+		auth/
+		home/
+		layout/
+		products/
+		ui/
+	lib/
+		authOptions.ts
+		db.ts
+		data.ts
+		mongodb.ts
+		payments/
+mongodb/
+	indexes.js
+protected-products/
+	.gitkeep
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Copy `.env.example` to `.env.local` and fill values:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+MONGODB_URI=
+MONGODB_DB_NAME=nourished_with_ruchika
+DIGITAL_PRODUCTS_DIR=protected-products
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
+```
 
-## Learn More
+For production on Hostinger, set:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+NEXTAUTH_URL=https://your-domain.com
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## MongoDB Compass Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create or choose a MongoDB cluster and connect it in Compass.
+2. Create database `nourished_with_ruchika` (or set your own `MONGODB_DB_NAME`).
+3. Run indexes script:
+	- `mongosh "<connection-string>/<db-name>" mongodb/indexes.js`
+4. Keep protected digital files in `protected-products/` with names matching `storagePath` in `src/lib/data.ts`.
 
-## Deploy on Vercel
+## Google OAuth Setup (NextAuth)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Create Google OAuth credentials in Google Cloud Console.
+2. Add authorized redirect URI:
+	- `https://your-domain.com/api/auth/callback/google`
+3. Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+4. Set a strong `NEXTAUTH_SECRET`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Razorpay Setup
+
+1. Create Razorpay account and fetch API keys.
+2. Set `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`.
+3. Ensure webhook verification is configured in production (recommended hardening).
+
+## Local Development
+
+```bash
+npm install
+npm run dev
+```
+
+App runs at `http://localhost:3000`.
+
+## Deploy on Hostinger
+
+This project is configured for Hostinger with `output: "standalone"` in `next.config.ts`.
+
+### Option A: Hostinger VPS (recommended)
+
+1. SSH into your server.
+2. Install Node.js 20+ and PM2.
+3. Clone repository and install dependencies.
+4. Add production env variables in `.env`.
+5. Build app with `npm run build`.
+6. Start with PM2 using `ecosystem.config.cjs`.
+
+Commands:
+
+```bash
+git clone <your-repo-url> nourished-ruchika
+cd nourished-ruchika
+npm install
+npm run build
+npm install -g pm2
+pm2 start ecosystem.config.cjs
+pm2 save
+pm2 startup
+```
+
+After build, ensure these exist:
+
+- `.next/standalone/server.js`
+- `.next/static`
+- `public`
+
+Configure Nginx reverse proxy to pass traffic from port 80/443 to `127.0.0.1:3000`.
+
+### Option B: Hostinger Node.js App in hPanel
+
+1. Create a Node.js app in hPanel.
+2. Set Node version to 20+.
+3. Upload project files.
+4. Run install command: `npm install`.
+5. Run build command: `npm run build`.
+6. Start command should run standalone server:
+
+```bash
+node .next/standalone/server.js
+```
+
+Set `PORT` and `HOSTNAME=0.0.0.0` in hPanel environment variables if required.
+
+## Domain & Auth/Payment Callbacks
+
+When domain is live:
+
+1. Ensure `NEXTAUTH_URL` points to your production domain.
+2. In Google OAuth console, add callback URL:
+	- `https://your-domain.com/api/auth/callback/google`
+3. Configure Razorpay allowed origins/webhooks to your production domain.
+
+## Security Notes
+
+- Digital files are not publicly exposed; access route checks payment ownership.
+- Access checks are enforced in API route before streaming files.
+- Payment signatures are verified using HMAC SHA-256 in `/api/payments/verify`.
+- MongoDB credentials are server-only environment variables.
+
+## Production Hardening Checklist
+
+1. Add Razorpay webhook-based reconciliation for failed client callbacks.
+2. Add rate limiting on payment and access routes.
+3. Add audit logging for payment verification and signed URL generation.
+4. Configure CSP and security headers in deployment layer.
+5. Add monitoring and alerts for API 4xx/5xx spikes.
