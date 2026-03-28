@@ -1,7 +1,41 @@
 import NextAuth from "next-auth";
+import { NextResponse, type NextRequest } from "next/server";
 
-import { authOptions } from "@/lib/authOptions";
+import {
+  getAuthConfigurationError,
+  getAuthOptions,
+} from "@/lib/authOptions";
 
-const handler = NextAuth(authOptions);
+type AuthRouteContext = {
+  params: Promise<{ nextauth: string[] }>;
+};
 
-export { handler as GET, handler as POST };
+function getConfigErrorResponse() {
+  const configError = getAuthConfigurationError();
+
+  if (!configError) {
+    return null;
+  }
+
+  return NextResponse.json({ error: configError }, { status: 500 });
+}
+
+export async function GET(request: NextRequest, context: AuthRouteContext) {
+  const configErrorResponse = getConfigErrorResponse();
+
+  if (configErrorResponse) {
+    return configErrorResponse;
+  }
+
+  return NextAuth(request, context, getAuthOptions());
+}
+
+export async function POST(request: NextRequest, context: AuthRouteContext) {
+  const configErrorResponse = getConfigErrorResponse();
+
+  if (configErrorResponse) {
+    return configErrorResponse;
+  }
+
+  return NextAuth(request, context, getAuthOptions());
+}

@@ -4,7 +4,7 @@ import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 
 import { PRODUCTS } from "@/lib/data";
-import { authOptions } from "@/lib/authOptions";
+import { getAuthOptions } from "@/lib/authOptions";
 import { getDatabase } from "@/lib/db";
 
 export async function GET(
@@ -18,7 +18,7 @@ export async function GET(
     return NextResponse.json({ error: "Product not found." }, { status: 404 });
   }
 
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(getAuthOptions());
   const userEmail = session?.user?.email;
 
   if (!userEmail) {
@@ -37,8 +37,18 @@ export async function GET(
     return NextResponse.json({ error: "You have not purchased this product." }, { status: 403 });
   }
 
-  const baseDir = process.env.DIGITAL_PRODUCTS_DIR ?? "protected-products";
-  const filePath = path.join(process.cwd(), baseDir, product.storagePath);
+  const storageRoot = "protected-products";
+  const configuredSubdir = process.env.DIGITAL_PRODUCTS_DIR?.trim();
+  const scopedSegments =
+    configuredSubdir && configuredSubdir !== storageRoot
+      ? configuredSubdir.split(/[\\/]+/).filter(Boolean)
+      : [];
+  const filePath = path.join(
+    process.cwd(),
+    storageRoot,
+    ...scopedSegments,
+    product.storagePath
+  );
 
   try {
     await access(filePath);

@@ -2,36 +2,54 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-import clientPromise from "@/lib/mongodb";
+import getMongoClientPromise from "@/lib/mongodb";
 
-const googleClientId = process.env.GOOGLE_CLIENT_ID;
-const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+const authEnvKeys = [
+  "GOOGLE_CLIENT_ID",
+  "GOOGLE_CLIENT_SECRET",
+  "NEXTAUTH_SECRET",
+  "MONGODB_URI",
+] as const;
 
-if (!googleClientId || !googleClientSecret) {
-  throw new Error("Missing Google OAuth environment variables.");
+export function getAuthConfigurationError() {
+  const missingKeys = authEnvKeys.filter((key) => !process.env[key]);
+
+  if (!missingKeys.length) {
+    return null;
+  }
+
+  return `Missing auth environment variables: ${missingKeys.join(", ")}.`;
 }
 
-export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise),
-  secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    strategy: "jwt",
-  },
-  providers: [
-    GoogleProvider({
-      clientId: googleClientId,
-      clientSecret: googleClientSecret,
-    }),
-  ],
-  pages: {
-    signIn: "/",
-  },
-  callbacks: {
-    async session({ session, token }) {
-      if (session.user && token.email) {
-        session.user.email = token.email;
-      }
-      return session;
+export function getAuthOptions(): NextAuthOptions {
+  const configError = getAuthConfigurationError();
+
+  if (configError) {
+    throw new Error(configError);
+  }
+
+  return {
+    adapter: MongoDBAdapter(getMongoClientPromise),
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+      strategy: "jwt",
     },
-  },
-};
+    providers: [
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID!,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      }),
+    ],
+    pages: {
+      signIn: "/",
+    },
+    callbacks: {
+      async session({ session, token }) {
+        if (session.user && token.email) {
+          session.user.email = token.email;
+        }
+        return session;
+      },
+    },
+  };
+}

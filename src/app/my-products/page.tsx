@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 
 import UnlockButton from "@/components/products/UnlockButton";
-import { authOptions } from "@/lib/authOptions";
+import { getAuthOptions } from "@/lib/authOptions";
 import { PRODUCTS } from "@/lib/data";
 import { getDatabase } from "@/lib/db";
 import { formatDate } from "@/lib/utils";
@@ -14,13 +14,15 @@ export const metadata: Metadata = {
   description: "Secure dashboard for purchased digital products.",
 };
 
+export const dynamic = "force-dynamic";
+
 type PurchaseRow = {
   productId: string;
   createdAt: Date;
 };
 
 export default async function MyProductsPage() {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(getAuthOptions());
   const userEmail = session?.user?.email;
 
   if (!userEmail) {

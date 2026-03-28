@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
 import { PRODUCTS } from "@/lib/data";
-import { authOptions } from "@/lib/authOptions";
+import { getAuthOptions } from "@/lib/authOptions";
 import { createRazorpayClient } from "@/lib/payments/razorpay";
 
 export async function POST(request: Request) {
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Product not found." }, { status: 404 });
     }
 
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession(getAuthOptions());
     const userEmail = session?.user?.email;
 
     if (!userEmail) {
