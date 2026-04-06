@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Star } from "lucide-react";
 
+import { PortraitAvatar } from "@/components/illustrations/IndianPortrait";
 import { REVIEWS } from "@/lib/data";
 import { formatDate } from "@/lib/utils";
 
@@ -22,9 +23,16 @@ export default function ReviewsPage() {
           {REVIEWS.map((review) => (
             <article key={review.id} className="rounded-2xl border border-sage-100 bg-white p-6 shadow-soft">
               <div className="flex items-center justify-between gap-4">
-                <div>
-                  <h2 className="font-display text-2xl font-semibold text-charcoal">{review.name}</h2>
+                <div className="flex items-center gap-3">
+                  <PortraitAvatar
+                    variant={review.portraitVariant}
+                    title={`${review.name} portrait`}
+                    className="h-12 w-12"
+                  />
+                  <div>
+                  <h2 className="font-display text-2xl font-semibold text-charcoal">{review.firstName}, {review.city}</h2>
                   <p className="text-xs uppercase tracking-widest text-sage-600">{review.program}</p>
+                  </div>
                 </div>
                 <div className="flex gap-1">
                   {Array.from({ length: review.rating }).map((_, index) => (

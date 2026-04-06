@@ -1,3 +1,14 @@
+export type PortraitVariant =
+  | "ruchika"
+  | "priya"
+  | "ananya"
+  | "kavita"
+  | "rohit"
+  | "neha"
+  | "deepika"
+  | "sanya"
+  | "meera";
+
 export interface Product {
   id: string;
   title: string;
@@ -29,11 +40,16 @@ export interface BlogPost {
 export interface Review {
   id: string;
   name: string;
+  firstName: string;
+  city: string;
   avatar: string;
+  portraitVariant: PortraitVariant;
+  image?: string;
   rating: number;
   text: string;
   program: string;
   date: string;
+  hasTransformation?: boolean;
   before?: string;
   after?: string;
 }
@@ -44,6 +60,8 @@ export interface Service {
   description: string;
   icon: string;
   features: string[];
+  ctaLabel: string;
+  ctaHref: string;
 }
 
 export interface NavItem {

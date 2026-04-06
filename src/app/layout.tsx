@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import WhatsAppFloat from "@/components/layout/WhatsAppFloat";
 import AuthProvider from "@/components/providers/AuthProvider";
 import { SITE_CONFIG } from "@/lib/data";
 
@@ -43,8 +44,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           <Header />
-          <main className="flex-1 pt-28 lg:pt-32">{children}</main>
+          <main className="flex-1 pt-20 lg:pt-28">{children}</main>
           <Footer />
+          <WhatsAppFloat />
         </AuthProvider>
       </body>
     </html>

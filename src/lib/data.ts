@@ -22,6 +22,8 @@ export const SERVICES: Service[] = [
       "Swap-friendly options",
       "Festival & travel guides",
     ],
+    ctaLabel: "Book This Plan",
+    ctaHref: "/about",
   },
   {
     id: "2",
@@ -35,6 +37,8 @@ export const SERVICES: Service[] = [
       "Behavioral coaching",
       "Progress tracking",
     ],
+    ctaLabel: "Start Weight Program",
+    ctaHref: "/about",
   },
   {
     id: "3",
@@ -48,6 +52,8 @@ export const SERVICES: Service[] = [
       "Cycle-syncing nutrition",
       "Insulin management",
     ],
+    ctaLabel: "Book PCOS Consult",
+    ctaHref: "/about",
   },
   {
     id: "4",
@@ -61,6 +67,8 @@ export const SERVICES: Service[] = [
       "Fermented food guides",
       "Stress-gut connection",
     ],
+    ctaLabel: "Heal Your Gut",
+    ctaHref: "/about",
   },
 ];
 
@@ -247,34 +255,49 @@ export const REVIEWS: Review[] = [
   {
     id: "rev_1",
     name: "Priya Sharma",
+    firstName: "Priya",
+    city: "Delhi",
     avatar: "PS",
+    portraitVariant: "priya",
     rating: 5,
     text: "Ruchika di completely transformed my relationship with food. I lost 12 kgs in 4 months without giving up my rajma chawal! Her plans are so practical and Indian-food friendly. My whole family eats the same food now — no more separate 'diet food'.",
     program: "Weight Management Program",
     date: "2026-03-10",
+    hasTransformation: true,
   },
   {
     id: "rev_2",
     name: "Ananya Reddy",
+    firstName: "Ananya",
+    city: "Hyderabad",
     avatar: "AR",
+    portraitVariant: "ananya",
     rating: 5,
     text: "After years of struggling with PCOS, irregular periods, and acne, Ruchika's approach was a game-changer. She didn't just give me a diet — she educated me about why my body was reacting the way it was. My cycles are regular now and my skin has never been clearer!",
     program: "PCOS Nutrition Program",
     date: "2026-02-25",
+    hasTransformation: true,
   },
   {
     id: "rev_3",
     name: "Kavita Mehta",
+    firstName: "Kavita",
+    city: "Ahmedabad",
     avatar: "KM",
+    portraitVariant: "kavita",
     rating: 5,
     text: "I was spending ₹5000/month on random supplements for my gut issues. Ruchika helped me identify my trigger foods and build a sustainable eating plan. My bloating is gone, and I've saved a fortune on unnecessary pills!",
     program: "Gut Health Program",
     date: "2026-02-18",
+    hasTransformation: true,
   },
   {
     id: "rev_4",
     name: "Rohit Bansal",
+    firstName: "Rohit",
+    city: "Gurugram",
     avatar: "RB",
+    portraitVariant: "rohit",
     rating: 5,
     text: "As a software developer who sits 12 hours a day, I thought there was no hope for my health. Ruchika designed a plan that works around my crazy schedule — even my late-night coding snacks are healthy now. Lost 8 kgs and my energy levels are through the roof.",
     program: "Weight Management Program",
@@ -283,7 +306,10 @@ export const REVIEWS: Review[] = [
   {
     id: "rev_5",
     name: "Neha Kapoor",
+    firstName: "Neha",
+    city: "Mumbai",
     avatar: "NK",
+    portraitVariant: "neha",
     rating: 5,
     text: "The 28-Day Reset Meal Plan is worth every rupee. The recipes are simple, ingredients are easily available, and the results are incredible. I've been cooking from it for 3 months now and my family loves the food. Best investment in my health!",
     program: "28-Day Reset Meal Plan",
@@ -292,7 +318,10 @@ export const REVIEWS: Review[] = [
   {
     id: "rev_6",
     name: "Deepika Jain",
+    firstName: "Deepika",
+    city: "Jaipur",
     avatar: "DJ",
+    portraitVariant: "deepika",
     rating: 5,
     text: "My 6-year-old was the pickiest eater ever. Thanks to the Family Nutrition Toolkit, I learned tricks to sneak nutrition into foods he actually enjoys. The tiffin ideas are a lifesaver — no more daily battles about what goes in his lunch box!",
     program: "Family Nutrition Toolkit",
@@ -301,7 +330,10 @@ export const REVIEWS: Review[] = [
   {
     id: "rev_7",
     name: "Sanya Oberoi",
+    firstName: "Sanya",
+    city: "Noida",
     avatar: "SO",
+    portraitVariant: "sanya",
     rating: 5,
     text: "I followed so many Instagram nutritionists before Ruchika, but none of them understood Indian eating habits. She knows that we eat roti with our meals, that we have guests over for festivals, and that we can't just 'eat a salad'. Finally, a dietitian who gets us!",
     program: "Personalized Meal Plan",
@@ -310,12 +342,22 @@ export const REVIEWS: Review[] = [
   {
     id: "rev_8",
     name: "Meera Iyer",
+    firstName: "Meera",
+    city: "Bengaluru",
     avatar: "MI",
+    portraitVariant: "meera",
     rating: 5,
     text: "Post-pregnancy, I was desperate to lose weight but also breastfeeding. Ruchika was so careful and knowledgeable about what's safe for nursing mothers. I lost the baby weight in 5 months without compromising my milk supply. She's amazing!",
     program: "Post-Pregnancy Nutrition",
     date: "2026-01-08",
   },
+];
+
+export const RUCHIKA_CREDENTIALS = [
+  "M.Sc. Clinical Nutrition & Dietetics",
+  "Certified Diabetes Educator (CDE)",
+  "PCOS & Women's Hormonal Health Specialist",
+  "Sports Nutrition (ISSA - Certified)",
 ];
 
 export const STATS = [
@@ -332,6 +374,7 @@ export const SITE_CONFIG = {
     "A refined approach to wellness with personalized nutrition designed for sustainable weight loss, effortless living, and lasting confidence.",
   email: "hello@nourishedwithruchika.com",
   phone: "+91 98765 43210",
+  whatsapp: "995869324",
   instagram: "https://instagram.com/nourishedwithruchika",
   youtube: "https://youtube.com/@nourishedwithruchika",
 };

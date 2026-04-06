@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["presystolic-palma-savvily.ngrok-free.dev"],
   poweredByHeader: false,
   compress: true,
   async headers() {

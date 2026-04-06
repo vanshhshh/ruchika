@@ -9,6 +9,7 @@ type BrandLogoProps = {
   imageClassName?: string;
   preload?: boolean;
   sizes?: string;
+  variant?: "framed" | "immersive";
 };
 
 function BrandLogoImage({
@@ -16,22 +17,23 @@ function BrandLogoImage({
   imageClassName,
   preload,
   sizes,
+  variant = "framed",
 }: Omit<BrandLogoProps, "href">) {
   return (
-    <div
-      className={cn(
-        "w-[9.5rem] rounded-[1.75rem] border border-sage-200/70 bg-white/90 p-1.5 shadow-[0_18px_40px_rgba(121,138,114,0.16)] backdrop-blur-sm",
-        className
-      )}
-    >
+    <div className={cn("w-38", className)}>
       <Image
-        src="/brand-logo-trimmed.jpg"
+        src="/brand-logo-removebg.png"
         alt="Nourished with Ruchika Chawla logo"
-        width={756}
-        height={653}
+        width={500}
+        height={500}
         preload={preload}
         sizes={sizes}
-        className={cn("h-auto w-full rounded-[1.2rem]", imageClassName)}
+        className={cn(
+          variant === "framed"
+            ? "h-auto w-full object-contain drop-shadow-[0_16px_32px_rgba(37,48,20,0.12)]"
+            : "h-auto w-full object-contain drop-shadow-[0_20px_42px_rgba(37,48,20,0.22)] brightness-[1.03] contrast-[1.04] saturate-[1.05]",
+          imageClassName
+        )}
       />
     </div>
   );
@@ -43,6 +45,7 @@ export default function BrandLogo({
   imageClassName,
   preload,
   sizes,
+  variant,
 }: BrandLogoProps) {
   const logo = (
     <BrandLogoImage
@@ -50,6 +53,7 @@ export default function BrandLogo({
       imageClassName={imageClassName}
       preload={preload}
       sizes={sizes}
+      variant={variant}
     />
   );
 

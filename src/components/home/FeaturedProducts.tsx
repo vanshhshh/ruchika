@@ -8,9 +8,10 @@ import { formatPrice } from "@/lib/utils";
 
 export default function FeaturedProducts() {
   return (
-    <section className="py-28 relative">
+    <section className="relative py-28">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-warm-100/40 blur-[100px]" />
+        <div className="absolute left-1/4 top-0 h-125 w-125 rounded-full bg-warm-200/35 blur-[100px]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#fbf1da] via-cream to-[#f6e7c4]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-6">
@@ -18,7 +19,7 @@ export default function FeaturedProducts() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <motion.p
-              initial={{ opacity: 0 }}
+              initial={false}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="text-sage-500 text-sm font-medium uppercase tracking-[0.2em] mb-3"
@@ -26,7 +27,7 @@ export default function FeaturedProducts() {
               Digital Products
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
@@ -35,7 +36,7 @@ export default function FeaturedProducts() {
               Plans That <span className="text-gradient">Actually Work</span>
             </motion.h2>
             <motion.div
-              initial={{ scaleX: 0 }}
+              initial={false}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -43,7 +44,7 @@ export default function FeaturedProducts() {
             />
           </div>
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={false}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
@@ -63,7 +64,7 @@ export default function FeaturedProducts() {
           {PRODUCTS.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
@@ -72,14 +73,14 @@ export default function FeaturedProducts() {
                 href={`/products/${product.slug}`}
                 className="group block h-full"
               >
-                <div className="h-full rounded-2xl bg-white border border-sage-100 overflow-hidden hover:shadow-elevated transition-all duration-500 hover:-translate-y-1">
+                <div className="h-full overflow-hidden rounded-2xl border border-sage-200/80 bg-linear-to-b from-[#fffaf1] to-[#f5e9c8] shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-elevated">
                   {/* Image area */}
-                  <div className="relative h-48 bg-gradient-to-br from-sage-100 to-warm-100 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden bg-linear-to-br from-sage-200 via-sage-100 to-warm-200">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <ShoppingBag className="w-12 h-12 text-sage-300 group-hover:scale-110 transition-transform duration-500" />
                     </div>
                     {product.badge && (
-                      <div className="absolute top-3 left-3 px-3 py-1 bg-sage-600 text-white text-[10px] font-semibold uppercase tracking-wider rounded-full">
+                      <div className="absolute left-3 top-3 rounded-full bg-sage-700 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
                         {product.badge}
                       </div>
                     )}

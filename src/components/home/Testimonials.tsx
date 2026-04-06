@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+
+import { PortraitAvatar } from "@/components/illustrations/IndianPortrait";
 import { REVIEWS } from "@/lib/data";
 
 export default function Testimonials() {
@@ -19,15 +21,16 @@ export default function Testimonials() {
   const review = visibleReviews[current];
 
   return (
-    <section className="py-28 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 bg-linear-to-b from-sage-50/50 via-sage-50/80 to-cream" />
-      <div className="absolute top-20 right-0 w-75 h-75 rounded-full bg-sage-200/20 blur-[80px]" />
+    <section className="relative overflow-hidden py-28">
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#f8efd8] via-[#fdf8ed] to-cream" />
+      <div className="absolute right-0 top-20 h-75 w-75 rounded-full bg-sage-300/20 blur-[80px]" />
+      <div className="absolute bottom-0 left-10 h-64 w-64 rounded-full bg-warm-200/20 blur-[90px]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-sage-500 text-sm font-medium uppercase tracking-[0.2em] mb-3"
@@ -35,7 +38,7 @@ export default function Testimonials() {
             Client Stories
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
@@ -44,7 +47,7 @@ export default function Testimonials() {
             Real People, <span className="text-gradient">Real Results</span>
           </motion.h2>
           <motion.div
-            initial={{ scaleX: 0 }}
+            initial={false}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -58,11 +61,11 @@ export default function Testimonials() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={review.id}
-                initial={{ opacity: 0, x: 40 }}
+                initial={false}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white rounded-3xl p-8 md:p-12 shadow-soft border border-sage-100"
+                className="rounded-3xl border border-sage-200/80 bg-linear-to-br from-[#fffaf2] via-[#fbf2dd] to-[#f2e2bc] p-8 shadow-medium md:p-12"
               >
                 <Quote className="w-10 h-10 text-sage-200 mb-6" />
 
@@ -72,12 +75,14 @@ export default function Testimonials() {
 
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center text-sage-700 font-semibold text-sm">
-                      {review.avatar}
-                    </div>
+                    <PortraitAvatar
+                      variant={review.portraitVariant}
+                      title={`${review.name} portrait`}
+                      className="h-12 w-12"
+                    />
                     <div>
                       <p className="font-semibold text-charcoal">
-                        {review.name}
+                        {review.firstName} from {review.city}
                       </p>
                       <p className="text-sm text-olive-gray">
                         {review.program}
@@ -100,7 +105,7 @@ export default function Testimonials() {
             <div className="flex items-center justify-center gap-4 mt-8">
               <button
                 onClick={prev}
-                className="w-10 h-10 rounded-full border border-sage-200 flex items-center justify-center text-sage-600 hover:bg-sage-50 transition-colors"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-sage-300 bg-white/70 text-sage-700 transition-colors hover:bg-white"
                 aria-label="Previous review"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -123,7 +128,7 @@ export default function Testimonials() {
 
               <button
                 onClick={next}
-                className="w-10 h-10 rounded-full border border-sage-200 flex items-center justify-center text-sage-600 hover:bg-sage-50 transition-colors"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-sage-300 bg-white/70 text-sage-700 transition-colors hover:bg-white"
                 aria-label="Next review"
               >
                 <ChevronRight className="w-4 h-4" />

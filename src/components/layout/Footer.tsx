@@ -6,14 +6,15 @@ import { NAV_ITEMS, SITE_CONFIG } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-sage-800 text-white">
+    <footer className="relative overflow-hidden bg-[linear-gradient(135deg,#35481a_0%,#253014_48%,#694217_100%)] text-white">
       <div className="absolute left-0 right-0 top-0 h-px bg-linear-to-r from-transparent via-sage-400/40 to-transparent" />
 
       <div className="mx-auto max-w-7xl px-6 pb-10 pt-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div className="lg:col-span-2">
             <BrandLogo
-              className="mb-5 w-[8.5rem] border-white/15 bg-white/95 shadow-[0_18px_45px_rgba(57,70,56,0.28)]"
+              variant="immersive"
+              className="mb-5 w-34"
               sizes="136px"
             />
             <p className="mb-6 max-w-md text-sm leading-relaxed text-sage-300">

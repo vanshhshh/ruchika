@@ -4,37 +4,37 @@
 
 @theme {
   /* ===== NOURISHED COLOR SYSTEM ===== */
-  --color-sage-50: #f7f8f1;
-  --color-sage-100: #edf1e6;
-  --color-sage-200: #dbe2ce;
-  --color-sage-300: #c1ccb0;
-  --color-sage-400: #a2b38b;
-  --color-sage-500: #8e9f80;
-  --color-sage-600: #798a72;
-  --color-sage-700: #64745e;
-  --color-sage-800: #4e5d4b;
-  --color-sage-900: #394638;
+  --color-sage-50: #f5f7ed;
+  --color-sage-100: #e4ecd0;
+  --color-sage-200: #cedea8;
+  --color-sage-300: #abc56d;
+  --color-sage-400: #89aa43;
+  --color-sage-500: #6d8c31;
+  --color-sage-600: #557327;
+  --color-sage-700: #476022;
+  --color-sage-800: #35481a;
+  --color-sage-900: #253014;
 
-  --color-warm-50: #fdfbf6;
-  --color-warm-100: #f8f3e7;
-  --color-warm-200: #f0e6cf;
-  --color-warm-300: #e2d3ae;
-  --color-warm-400: #d4c191;
-  --color-warm-500: #c5ad74;
-  --color-warm-600: #ac935b;
-  --color-warm-700: #8f7749;
-  --color-warm-800: #725f3c;
-  --color-warm-900: #594a31;
+  --color-warm-50: #fff8ed;
+  --color-warm-100: #fceecf;
+  --color-warm-200: #f5d892;
+  --color-warm-300: #edbe58;
+  --color-warm-400: #df9f31;
+  --color-warm-500: #c88320;
+  --color-warm-600: #a76a1c;
+  --color-warm-700: #85531a;
+  --color-warm-800: #694217;
+  --color-warm-900: #533513;
 
-  --color-gold-400: #e2d3ae;
-  --color-gold-500: #c5ad74;
-  --color-gold-600: #8f7749;
+  --color-gold-400: #edbe58;
+  --color-gold-500: #df9f31;
+  --color-gold-600: #a76a1c;
 
-  --color-cream: #fbfbef;
-  --color-ivory: #f4f1e3;
-  --color-charcoal: #445244;
-  --color-olive-gray: #8f9486;
-  --color-blush: #eee8d6;
+  --color-cream: #fbf3df;
+  --color-ivory: #f2e6c5;
+  --color-charcoal: #1f2d13;
+  --color-olive-gray: #5b6542;
+  --color-blush: #f0dfb6;
 
   /* ===== TYPOGRAPHY ===== */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -51,9 +51,9 @@
   --radius-pill: 9999px;
 
   /* ===== SHADOWS ===== */
-  --shadow-soft: 0 2px 20px rgba(121, 138, 114, 0.08);
-  --shadow-medium: 0 8px 34px rgba(121, 138, 114, 0.14);
-  --shadow-elevated: 0 18px 48px rgba(121, 138, 114, 0.18);
+  --shadow-soft: 0 4px 24px rgba(53, 72, 26, 0.12);
+  --shadow-medium: 0 10px 36px rgba(53, 72, 26, 0.18);
+  --shadow-elevated: 0 22px 56px rgba(37, 48, 20, 0.24);
 
   /* ===== TRANSITIONS ===== */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -100,8 +100,8 @@ body {
   font-family: var(--font-body);
   color: var(--color-charcoal);
   background:
-    radial-gradient(circle at top right, rgba(226, 211, 174, 0.18), transparent 30%),
-    radial-gradient(circle at left center, rgba(162, 179, 139, 0.14), transparent 26%),
+    radial-gradient(circle at top right, rgba(223, 159, 49, 0.24), transparent 28%),
+    radial-gradient(circle at left center, rgba(109, 140, 49, 0.2), transparent 30%),
     var(--color-cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -115,22 +115,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ===== UTILITY CLASSES ===== */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-sage-700), var(--color-warm-500));
+  background: linear-gradient(135deg, var(--color-sage-800), var(--color-warm-400));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 249, 238, 0.82);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(162, 179, 139, 0.14);
+  border: 1px solid rgba(109, 140, 49, 0.16);
 }
 
 .section-divider {
   width: 60px;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-warm-400), var(--color-sage-500));
+  background: linear-gradient(90deg, var(--color-warm-400), var(--color-sage-600));
 }
 
 /* ===== SCROLLBAR ===== */

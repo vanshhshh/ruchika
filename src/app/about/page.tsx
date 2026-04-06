@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeartHandshake, Quote, Sparkles } from "lucide-react";
+import { RUCHIKA_CREDENTIALS } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About",
@@ -48,7 +49,7 @@ export default function AboutPage() {
               your body, your routine, and your goals.
             </p>
 
-            <div className="mt-8 rounded-[2rem] border border-sage-100 bg-white/80 p-6 shadow-soft backdrop-blur-sm md:p-8">
+            <div className="mt-8 rounded-4xl border border-sage-100 bg-white/80 p-6 shadow-soft backdrop-blur-sm md:p-8">
               <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-sage-700">
                 <Sparkles className="h-4 w-4" />
                 Luxury In Health
@@ -61,7 +62,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-sage-100 bg-white p-8 shadow-medium md:p-10">
+          <div className="rounded-4xl border border-sage-100 bg-white p-8 shadow-medium md:p-10">
             <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-sage-700">
               <HeartHandshake className="h-4 w-4" />
               The Nourished Method
@@ -85,7 +86,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-sage-100 bg-sage-50/70 p-8 shadow-soft md:p-10">
+          <div className="rounded-4xl border border-sage-100 bg-sage-50/70 p-8 shadow-soft md:p-10">
             <p className="text-xs uppercase tracking-[0.18em] text-sage-600">
               About The Founder
             </p>
@@ -109,7 +110,23 @@ export default function AboutPage() {
               ))}
             </ul>
 
-            <div className="mt-8 rounded-[1.5rem] border border-warm-200 bg-white/80 p-5 text-sm leading-relaxed text-sage-700">
+            <div className="mt-6 rounded-2xl border border-sage-100 bg-white/80 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sage-700">
+                Degrees & Certifications
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {RUCHIKA_CREDENTIALS.map((credential) => (
+                  <span
+                    key={credential}
+                    className="rounded-full bg-sage-100 px-3 py-1.5 text-xs font-medium text-sage-700"
+                  >
+                    {credential}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 rounded-3xl border border-warm-200 bg-white/80 p-5 text-sm leading-relaxed text-sage-700">
               <div className="flex items-center gap-2 font-medium">
                 <Quote className="h-4 w-4" />
                 Founder&apos;s note
@@ -121,7 +138,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-sage-100 bg-white p-8 shadow-soft md:p-10">
+          <div className="rounded-4xl border border-sage-100 bg-white p-8 shadow-soft md:p-10">
             <p className="text-xs uppercase tracking-[0.18em] text-sage-600">
               Every Journey Is Personal
             </p>

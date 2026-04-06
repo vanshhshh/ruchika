@@ -4,15 +4,18 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Check, Sparkles, Star } from "lucide-react";
 
-import { STATS } from "@/lib/data";
+import IndianPortrait, {
+  PortraitAvatar,
+} from "@/components/illustrations/IndianPortrait";
+import { RUCHIKA_CREDENTIALS, STATS } from "@/lib/data";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
+    <section className="relative flex min-h-screen items-center overflow-hidden bg-linear-to-b from-cream via-[#f7ecd1] to-ivory">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute right-10 top-20 h-[500px] w-[500px] rounded-full bg-sage-200/30 blur-[100px]" />
-        <div className="absolute bottom-20 left-10 h-[400px] w-[400px] rounded-full bg-warm-200/30 blur-[100px]" />
-        <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sage-100/20 blur-[120px]" />
+        <div className="absolute right-10 top-20 h-125 w-125 rounded-full bg-sage-300/30 blur-[100px]" />
+        <div className="absolute bottom-20 left-10 h-105 w-105 rounded-full bg-warm-300/28 blur-[100px]" />
+        <div className="absolute left-1/2 top-1/2 h-155 w-155 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sage-100/35 blur-[120px]" />
 
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -28,17 +31,17 @@ export default function Hero() {
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 inline-flex items-center gap-2 rounded-full bg-sage-100 px-4 py-1.5 text-xs font-medium text-sage-700"
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-sage-200/80 bg-linear-to-r from-sage-100 to-warm-100 px-4 py-1.5 text-xs font-medium text-sage-800 shadow-soft"
             >
               <Sparkles className="h-3.5 w-3.5" />
               <span>Trusted by 2000+ clients across India</span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               className="font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl lg:text-7xl"
@@ -49,7 +52,7 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               className="mt-6 max-w-lg text-lg leading-relaxed text-olive-gray"
@@ -60,7 +63,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-10 flex flex-wrap gap-4"
@@ -74,33 +77,50 @@ export default function Hero() {
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 rounded-full border border-sage-300 px-7 py-3.5 font-medium text-sage-700 transition-all duration-300 hover:bg-sage-50"
+                className="inline-flex items-center gap-2 rounded-full border border-sage-300 bg-white/65 px-7 py-3.5 font-medium text-sage-800 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/90"
               >
-                About Ruchika
+                Book Consultation
+              </Link>
+              <Link
+                href="#free-guide"
+                className="inline-flex items-center gap-2 rounded-full border border-warm-300 bg-warm-100/80 px-7 py-3.5 font-medium text-sage-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-warm-100"
+              >
+                Get Free Guide
               </Link>
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative hidden lg:block"
           >
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem]">
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-sage-200 via-sage-100 to-warm-100">
-                <div className="p-10 text-center">
-                  <div className="mx-auto mb-6 flex h-40 w-40 items-center justify-center rounded-full bg-gradient-to-br from-sage-300 to-sage-400">
-                    <span className="font-display text-5xl font-bold text-white">
-                      RC
-                    </span>
-                  </div>
-                  <p className="font-display text-xl font-medium text-sage-700">
+            <div className="relative aspect-4/5 w-full overflow-hidden rounded-4xl border border-white/40 shadow-elevated">
+              <div className="absolute inset-0 bg-linear-to-br from-sage-300 via-sage-100 to-warm-200">
+                <IndianPortrait
+                  variant="ruchika"
+                  title="Ruchika Chawla portrait"
+                  className="h-full w-full"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-charcoal/35 via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/30 bg-white/78 p-4 backdrop-blur-sm">
+                  <p className="font-display text-xl font-semibold text-sage-800">
                     Dt. Ruchika Chawla
                   </p>
-                  <p className="mt-1 text-sm text-sage-500">
-                    Certified Clinical Nutritionist
+                  <p className="mt-1 text-sm text-sage-700">
+                    Clinical Nutritionist & Hormonal Health Coach
                   </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {RUCHIKA_CREDENTIALS.slice(0, 2).map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full bg-sage-100 px-3 py-1 text-[11px] font-medium text-sage-700"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -134,13 +154,17 @@ export default function Hero() {
               >
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2">
-                    {["PS", "AR", "KM"].map((initials) => (
-                      <div
-                        key={initials}
-                        className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-sage-200 text-[10px] font-medium text-sage-700"
-                      >
-                        {initials}
-                      </div>
+                    {([
+                      { variant: "priya", title: "Priya portrait" },
+                      { variant: "ananya", title: "Ananya portrait" },
+                      { variant: "kavita", title: "Kavita portrait" },
+                    ] as const).map((person) => (
+                      <PortraitAvatar
+                        key={person.variant}
+                        variant={person.variant}
+                        title={person.title}
+                        className="h-8 w-8 border-2 border-white"
+                      />
                     ))}
                   </div>
                   <div>
@@ -163,12 +187,12 @@ export default function Hero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 1 }}
           className="mt-20 lg:mt-24"
         >
-          <div className="rounded-2xl p-8 shadow-soft glass-card md:p-10">
+          <div className="rounded-2xl border border-sage-200/70 bg-linear-to-r from-[#fff9ef] via-[#f9efd8] to-[#f4e5c0] p-8 shadow-medium md:p-10">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-4">
               {STATS.map((stat, index) => (
                 <div

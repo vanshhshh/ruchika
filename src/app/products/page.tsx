@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 
+import OfferBanner from "@/components/layout/OfferBanner";
 import BuyButton from "@/components/products/BuyButton";
 import { Badge } from "@/components/ui/badge";
 import { PRODUCTS } from "@/lib/data";
@@ -24,7 +25,11 @@ export default function ProductsPage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8">
+          <OfferBanner />
+        </div>
+
+        <div id="product-catalog" className="mt-10 grid gap-6 scroll-mt-44 md:grid-cols-2 lg:grid-cols-3">
           {PRODUCTS.map((product) => (
             <article key={product.id} className="rounded-2xl border border-sage-100 bg-white p-6 shadow-soft">
               {product.badge ? <Badge className="mb-4">{product.badge}</Badge> : null}

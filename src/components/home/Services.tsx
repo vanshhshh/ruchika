@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { UtensilsCrossed, Scale, HeartPulse, Leaf } from "lucide-react";
 import { SERVICES } from "@/lib/data";
 
@@ -13,14 +14,14 @@ const ICONS: Record<string, React.ElementType> = {
 
 export default function Services() {
   return (
-    <section className="py-28 relative">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cream via-ivory to-cream" />
+    <section className="relative py-28">
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#f7edd2] via-[#fbf2dd] to-[#f2e1b9]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="text-sage-500 text-sm font-medium uppercase tracking-[0.2em] mb-3"
@@ -28,7 +29,7 @@ export default function Services() {
             What I Offer
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
@@ -38,14 +39,14 @@ export default function Services() {
             <span className="text-gradient">Designed for You</span>
           </motion.h2>
           <motion.div
-            initial={{ scaleX: 0 }}
+            initial={false}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
             className="section-divider mx-auto mt-6"
           />
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
@@ -58,20 +59,20 @@ export default function Services() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid gap-6 md:grid-cols-2">
           {SERVICES.map((service, index) => {
             const IconComp = ICONS[service.icon] || Leaf;
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="group relative p-8 md:p-10 rounded-2xl bg-white border border-sage-100 hover:border-sage-200 transition-all duration-500 hover:shadow-elevated"
+                className="group relative rounded-2xl border border-sage-200/80 bg-linear-to-br from-[#fffaf0] via-[#f8edd6] to-[#f3e5c0] p-8 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-sage-300 hover:shadow-elevated md:p-10"
               >
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-2xl bg-sage-50 flex items-center justify-center mb-6 group-hover:bg-sage-100 group-hover:scale-110 transition-all duration-300">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/75 shadow-soft transition-all duration-300 group-hover:scale-110 group-hover:bg-white">
                   <IconComp className="w-6 h-6 text-sage-600" />
                 </div>
 
@@ -95,8 +96,15 @@ export default function Services() {
                   ))}
                 </div>
 
+                <Link
+                  href={service.ctaHref}
+                  className="mt-7 inline-flex items-center rounded-full bg-sage-700 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-sage-800"
+                >
+                  {service.ctaLabel}
+                </Link>
+
                 {/* Hover accent */}
-                <div className="absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r from-sage-400 to-warm-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-full" />
+                <div className="absolute bottom-0 left-8 right-8 h-0.5 rounded-full bg-linear-to-r from-sage-400 to-warm-400 scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
               </motion.div>
             );
           })}
