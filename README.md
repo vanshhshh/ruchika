@@ -66,12 +66,36 @@ NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
-MONGODB_URI=
+NEXTAUTH_GOOGLE_CLIENT_ID=
+NEXTAUTH_GOOGLE_CLIENT_SECRET=
+MONGODB_URI=mongodb://127.0.0.1:27017
 MONGODB_DB_NAME=nourished_with_ruchika
 DIGITAL_PRODUCTS_DIR=protected-products
 RAZORPAY_KEY_ID=
 RAZORPAY_KEY_SECRET=
+RAZORPAY_WEBHOOK_SECRET=
+NEXT_PUBLIC_RAZORPAY_PAYMENT_BUTTON_ID=
 ```
+
+## Mongoose Seed (Transfer Existing Data)
+
+This project includes a Mongoose seed script to transfer the current app content from `src/lib/data.ts` into MongoDB collections.
+
+1. Ensure local MongoDB server is running on port `27017`.
+2. Set local env values:
+	- `MONGODB_URI=mongodb://127.0.0.1:27017`
+	- `MONGODB_DB_NAME=nourished_with_ruchika`
+3. Run:
+
+```bash
+npm run seed:mongoose
+```
+
+Seed target collections:
+
+- `products`
+- `blogs`
+- `reviews`
 
 For production on Hostinger, set:
 
@@ -94,13 +118,16 @@ NEXTAUTH_URL=https://your-domain.com
 2. Add authorized redirect URI:
 	- `https://your-domain.com/api/auth/callback/google`
 3. Set `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
-4. Set a strong `NEXTAUTH_SECRET`.
+4. If your shell or system already defines empty Google env vars, set `NEXTAUTH_GOOGLE_CLIENT_ID` and `NEXTAUTH_GOOGLE_CLIENT_SECRET` (supported fallback keys).
+5. Set a strong `NEXTAUTH_SECRET`.
 
 ## Razorpay Setup
 
 1. Create Razorpay account and fetch API keys.
 2. Set `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`.
-3. Ensure webhook verification is configured in production (recommended hardening).
+3. Create webhook for `payment.captured` event pointing to `/api/payments/webhook`.
+4. Set `RAZORPAY_WEBHOOK_SECRET` to the webhook secret from Razorpay dashboard.
+5. Optional hosted button: set `NEXT_PUBLIC_RAZORPAY_PAYMENT_BUTTON_ID` to render Razorpay payment-button.js on product detail pages.
 
 ## Local Development
 
@@ -178,7 +205,7 @@ When domain is live:
 
 ## Production Hardening Checklist
 
-1. Add Razorpay webhook-based reconciliation for failed client callbacks.
+1. Razorpay webhook reconciliation is implemented at `/api/payments/webhook`.
 2. Add rate limiting on payment and access routes.
 3. Add audit logging for payment verification and signed URL generation.
 4. Configure CSP and security headers in deployment layer.

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import BuyButton from "@/components/products/BuyButton";
+import RazorpayHostedButton from "@/components/products/RazorpayHostedButton";
 import { PRODUCTS } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 
@@ -32,6 +33,7 @@ export default async function ProductDetailPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const paymentButtonId = process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_BUTTON_ID;
   const { slug } = await params;
   const product = PRODUCTS.find((item) => item.slug === slug);
 
@@ -68,6 +70,12 @@ export default async function ProductDetailPage({
           <div className="mt-6">
             <BuyButton productId={product.id} productTitle={product.title} />
           </div>
+          {paymentButtonId ? (
+            <div className="mt-4 border-t border-sage-100 pt-4">
+              <p className="mb-3 text-xs text-olive-gray">Hosted checkout button</p>
+              <RazorpayHostedButton buttonId={paymentButtonId} />
+            </div>
+          ) : null}
         </aside>
       </div>
     </section>

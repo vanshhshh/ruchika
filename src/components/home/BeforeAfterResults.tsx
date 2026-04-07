@@ -13,13 +13,13 @@ const transformationReviews = REVIEWS.filter(
 
 export default function BeforeAfterResults() {
   return (
-    <section className="py-24">
+    <section className="py-20 md:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage-600">
             Visible Transformation
           </p>
-          <h2 className="mt-3 font-display text-4xl font-bold text-charcoal md:text-5xl">
+          <h2 className="mt-3 font-display text-3xl font-bold text-charcoal sm:text-4xl md:text-5xl">
             Before & After Results
           </h2>
           <p className="mt-4 text-olive-gray">

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 
 import { PRODUCTS } from "@/lib/data";
 import { getAuthOptions } from "@/lib/authOptions";
+import { getDatabase } from "@/lib/db";
 import { createRazorpayClient } from "@/lib/payments/razorpay";
 
 export async function POST(request: Request) {
@@ -37,6 +38,30 @@ export async function POST(request: Request) {
         productId: product.id,
       },
     });
+
+    const db = await getDatabase();
+    const purchases = db.collection("purchases");
+
+    await purchases.updateOne(
+      {
+        userEmail,
+        productId: product.id,
+      },
+      {
+        $set: {
+          userEmail,
+          productId: product.id,
+          razorpayOrderId: order.id,
+          amount: product.price,
+          paymentStatus: "created",
+          updatedAt: new Date(),
+        },
+        $setOnInsert: {
+          createdAt: new Date(),
+        },
+      },
+      { upsert: true }
+    );
 
     return NextResponse.json({
       order,

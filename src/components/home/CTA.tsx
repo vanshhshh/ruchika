@@ -12,7 +12,7 @@ export default function CTA() {
   )}`;
 
   return (
-    <section className="relative overflow-hidden py-28">
+    <section className="relative overflow-hidden py-20 md:py-24">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-linear-to-br from-sage-900 via-sage-700 to-warm-700" />
         <div className="absolute right-0 top-0 h-100 w-100 rounded-full bg-sage-400/18 blur-[80px]" />
@@ -39,20 +39,20 @@ export default function CTA() {
             <span>Free 15-minute discovery call</span>
           </div>
 
-          <h2 className="font-display text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+          <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Ready to Transform{" "}
             <span className="bg-linear-to-r from-warm-200 via-warm-300 to-white bg-clip-text text-transparent">
               Your Health?
             </span>
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-sage-100/90">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-sage-100/90 sm:text-lg">
             Take the first step towards a healthier you. Whether you&apos;re
             looking to manage your weight, balance your hormones, or simply eat
             better, I&apos;m here to guide you every step of the way.
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
             <Link
               href="/products"
               className="group inline-flex items-center gap-2 rounded-full bg-warm-300 px-8 py-4 font-semibold text-sage-900 transition-all duration-300 hover:-translate-y-0.5 hover:bg-warm-200 hover:shadow-xl hover:shadow-warm-300/25"

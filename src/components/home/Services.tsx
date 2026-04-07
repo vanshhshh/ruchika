@@ -14,12 +14,12 @@ const ICONS: Record<string, React.ElementType> = {
 
 export default function Services() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-20 md:py-24">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#f7edd2] via-[#fbf2dd] to-[#f2e1b9]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
           <motion.p
             initial={false}
             whileInView={{ opacity: 1 }}
@@ -33,7 +33,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl font-bold text-charcoal"
+            className="font-display text-3xl font-bold text-charcoal sm:text-4xl md:text-5xl"
           >
             Nutrition Programs{" "}
             <span className="text-gradient">Designed for You</span>
@@ -50,7 +50,7 @@ export default function Services() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="mt-5 text-olive-gray leading-relaxed"
+            className="mt-5 text-sm leading-relaxed text-olive-gray sm:text-base"
           >
             Every body is different. That&apos;s why every plan I create is
             uniquely tailored to your health goals, lifestyle, and love for
@@ -69,7 +69,7 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.6 }}
-                className="group relative rounded-2xl border border-sage-200/80 bg-linear-to-br from-[#fffaf0] via-[#f8edd6] to-[#f3e5c0] p-8 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-sage-300 hover:shadow-elevated md:p-10"
+                className="group relative rounded-2xl border border-sage-200/80 bg-linear-to-br from-[#fffaf0] via-[#f8edd6] to-[#f3e5c0] p-6 shadow-soft transition-all duration-500 hover:-translate-y-1 hover:border-sage-300 hover:shadow-elevated sm:p-8 md:p-10"
               >
                 {/* Icon */}
                 <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/75 shadow-soft transition-all duration-300 group-hover:scale-110 group-hover:bg-white">
@@ -84,7 +84,7 @@ export default function Services() {
                 </p>
 
                 {/* Features */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {service.features.map((feature) => (
                     <div
                       key={feature}

@@ -87,14 +87,14 @@ export default function FreeGuideSection() {
     <>
       <section id="free-guide" className="py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="overflow-hidden rounded-3xl border border-warm-200 bg-linear-to-r from-[#fff6de] via-[#fff1d4] to-[#fbe6bb] p-8 shadow-medium md:p-12">
+          <div className="overflow-hidden rounded-3xl border border-warm-200 bg-linear-to-r from-[#fff6de] via-[#fff1d4] to-[#fbe6bb] p-6 shadow-medium sm:p-8 md:p-12">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sage-700">
               Free Download Offer
             </p>
-            <h2 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-tight text-charcoal md:text-5xl">
+            <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold leading-tight text-charcoal sm:text-4xl md:text-5xl">
               Get the 7-Day Metabolism Reset PDF Guide
             </h2>
-            <p className="mt-4 max-w-2xl text-olive-gray">
+            <p className="mt-4 max-w-2xl text-sm text-olive-gray sm:text-base">
               Practical daily meal templates, shopping list, and snack swaps to kickstart your nutrition journey.
             </p>
 
@@ -140,7 +140,7 @@ export default function FreeGuideSection() {
       {showSticky ? (
         <a
           href="#free-guide"
-          className="fixed bottom-24 left-1/2 z-40 -translate-x-1/2 rounded-full bg-warm-400 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-sage-900 shadow-[0_10px_30px_rgba(223,159,49,0.35)]"
+          className="fixed bottom-24 left-1/2 z-40 w-[min(92vw,22rem)] -translate-x-1/2 rounded-full bg-warm-400 px-4 py-2.5 text-center text-[11px] font-semibold uppercase tracking-[0.12em] text-sage-900 shadow-[0_10px_30px_rgba(223,159,49,0.35)] sm:w-auto sm:px-5 sm:py-3 sm:text-xs sm:tracking-[0.16em]"
         >
           Free Guide: Ends in {countdown}
         </a>

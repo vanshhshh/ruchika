@@ -8,7 +8,7 @@ import { formatPrice } from "@/lib/utils";
 
 export default function FeaturedProducts() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-20 md:py-24">
       <div className="absolute inset-0 -z-10">
         <div className="absolute left-1/4 top-0 h-125 w-125 rounded-full bg-warm-200/35 blur-[100px]" />
         <div className="absolute inset-0 bg-linear-to-b from-[#fbf1da] via-cream to-[#f6e7c4]" />
@@ -16,7 +16,7 @@ export default function FeaturedProducts() {
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
           <div>
             <motion.p
               initial={false}
@@ -31,7 +31,7 @@ export default function FeaturedProducts() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="font-display text-4xl md:text-5xl font-bold text-charcoal"
+              className="font-display text-3xl font-bold text-charcoal sm:text-4xl md:text-5xl"
             >
               Plans That <span className="text-gradient">Actually Work</span>
             </motion.h2>
@@ -60,7 +60,7 @@ export default function FeaturedProducts() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {PRODUCTS.map((product, index) => (
             <motion.div
               key={product.id}

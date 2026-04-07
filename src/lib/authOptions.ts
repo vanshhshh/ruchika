@@ -4,15 +4,37 @@ import GoogleProvider from "next-auth/providers/google";
 
 import getMongoClientPromise from "@/lib/mongodb";
 
-const authEnvKeys = [
-  "GOOGLE_CLIENT_ID",
-  "GOOGLE_CLIENT_SECRET",
-  "NEXTAUTH_SECRET",
-  "MONGODB_URI",
-] as const;
+function getFirstNonEmptyEnv(...keys: string[]) {
+  for (const key of keys) {
+    const value = process.env[key]?.trim();
+    if (value) {
+      return value;
+    }
+  }
+
+  return "";
+}
 
 export function getAuthConfigurationError() {
-  const missingKeys = authEnvKeys.filter((key) => !process.env[key]);
+  const googleClientId = getFirstNonEmptyEnv("NEXTAUTH_GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_ID");
+  const googleClientSecret = getFirstNonEmptyEnv("NEXTAUTH_GOOGLE_CLIENT_SECRET", "GOOGLE_CLIENT_SECRET");
+  const nextAuthSecret = getFirstNonEmptyEnv("NEXTAUTH_SECRET");
+  const mongodbUri = getFirstNonEmptyEnv("MONGODB_URI");
+
+  const missingKeys: string[] = [];
+
+  if (!googleClientId) {
+    missingKeys.push("NEXTAUTH_GOOGLE_CLIENT_ID or GOOGLE_CLIENT_ID");
+  }
+  if (!googleClientSecret) {
+    missingKeys.push("NEXTAUTH_GOOGLE_CLIENT_SECRET or GOOGLE_CLIENT_SECRET");
+  }
+  if (!nextAuthSecret) {
+    missingKeys.push("NEXTAUTH_SECRET");
+  }
+  if (!mongodbUri) {
+    missingKeys.push("MONGODB_URI");
+  }
 
   if (!missingKeys.length) {
     return null;
@@ -28,6 +50,9 @@ export function getAuthOptions(): NextAuthOptions {
     throw new Error(configError);
   }
 
+  const googleClientId = getFirstNonEmptyEnv("NEXTAUTH_GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_ID");
+  const googleClientSecret = getFirstNonEmptyEnv("NEXTAUTH_GOOGLE_CLIENT_SECRET", "GOOGLE_CLIENT_SECRET");
+
   return {
     adapter: MongoDBAdapter(getMongoClientPromise),
     secret: process.env.NEXTAUTH_SECRET,
@@ -36,8 +61,8 @@ export function getAuthOptions(): NextAuthOptions {
     },
     providers: [
       GoogleProvider({
-        clientId: process.env.GOOGLE_CLIENT_ID!,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+        clientId: googleClientId,
+        clientSecret: googleClientSecret,
       }),
     ],
     pages: {

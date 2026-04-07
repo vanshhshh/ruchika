@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -26,6 +26,14 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const isActiveLink = (href: string) =>
     pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
@@ -33,7 +41,7 @@ export default function Header() {
     <>
       <header className="fixed left-0 right-0 top-0 z-50">
         <div className="border-b border-warm-200/70 bg-warm-100 px-4 py-1 text-center">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-sage-900 md:text-xs">
+          <p className="text-[10px] uppercase tracking-[0.16em] text-sage-900 sm:text-[11px] sm:tracking-[0.22em] md:text-xs md:tracking-[0.28em]">
             {ANNOUNCEMENT_TEXT}
           </p>
         </div>
@@ -152,7 +160,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-0 bottom-0 top-[5rem] z-40 bg-cream/98 px-6 py-8 text-charcoal backdrop-blur-lg lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-[5.75rem] z-40 overflow-y-auto bg-cream/98 px-6 py-6 text-charcoal backdrop-blur-lg lg:hidden"
           >
             <nav className="flex flex-col gap-2">
               {NAV_ITEMS.map((item, index) => (

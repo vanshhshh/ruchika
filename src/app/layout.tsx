@@ -44,7 +44,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           <Header />
-          <main className="flex-1 pt-20 lg:pt-28">{children}</main>
+          <main className="flex-1 pt-32 lg:pt-28">{children}</main>
           <Footer />
           <WhatsAppFloat />
         </AuthProvider>

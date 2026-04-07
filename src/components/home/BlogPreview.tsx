@@ -10,12 +10,12 @@ export default function BlogPreview() {
   const posts = BLOG_POSTS.slice(0, 3);
 
   return (
-    <section className="relative py-28">
+    <section className="relative py-20 md:py-24">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#f7ecd1] via-[#fcf5e5] to-[#f5e7c1]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:mb-16 md:flex-row md:items-end">
           <div>
             <motion.p
               initial={false}
@@ -30,7 +30,7 @@ export default function BlogPreview() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="font-display text-4xl md:text-5xl font-bold text-charcoal"
+              className="font-display text-3xl font-bold text-charcoal sm:text-4xl md:text-5xl"
             >
               Nutrition <span className="text-gradient">Insights</span>
             </motion.h2>
@@ -59,7 +59,7 @@ export default function BlogPreview() {
         </div>
 
         {/* Blog Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-3">
           {posts.map((post, index) => (
             <motion.div
               key={post.id}

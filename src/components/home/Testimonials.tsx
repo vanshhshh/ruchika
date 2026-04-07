@@ -21,14 +21,14 @@ export default function Testimonials() {
   const review = visibleReviews[current];
 
   return (
-    <section className="relative overflow-hidden py-28">
+    <section className="relative overflow-hidden py-20 md:py-24">
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-[#f8efd8] via-[#fdf8ed] to-cream" />
       <div className="absolute right-0 top-20 h-75 w-75 rounded-full bg-sage-300/20 blur-[80px]" />
       <div className="absolute bottom-0 left-10 h-64 w-64 rounded-full bg-warm-200/20 blur-[90px]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="mx-auto mb-12 max-w-2xl text-center md:mb-16">
           <motion.p
             initial={false}
             whileInView={{ opacity: 1 }}
@@ -42,7 +42,7 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl font-bold text-charcoal"
+            className="font-display text-3xl font-bold text-charcoal sm:text-4xl md:text-5xl"
           >
             Real People, <span className="text-gradient">Real Results</span>
           </motion.h2>
@@ -56,7 +56,7 @@ export default function Testimonials() {
         </div>
 
         {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl">
           <div className="relative">
             <AnimatePresence mode="wait">
               <motion.div
@@ -65,11 +65,11 @@ export default function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -40 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-3xl border border-sage-200/80 bg-linear-to-br from-[#fffaf2] via-[#fbf2dd] to-[#f2e2bc] p-8 shadow-medium md:p-12"
+                className="rounded-3xl border border-sage-200/80 bg-linear-to-br from-[#fffaf2] via-[#fbf2dd] to-[#f2e2bc] p-6 shadow-medium sm:p-8 md:p-12"
               >
                 <Quote className="w-10 h-10 text-sage-200 mb-6" />
 
-                <p className="text-lg md:text-xl text-charcoal leading-relaxed font-light mb-8">
+                <p className="mb-7 text-base leading-relaxed font-light text-charcoal sm:text-lg md:mb-8 md:text-xl">
                   &ldquo;{review.text}&rdquo;
                 </p>
 
